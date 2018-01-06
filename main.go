@@ -8,6 +8,7 @@ import (
 	"time"
 )
 
+// Coin struct
 type Coin struct {
 	Cap24hrChange float64 `json:"cap24hrChange"`
 	Long          string  `json:"long"`
@@ -56,4 +57,8 @@ func main() {
 	}
 
 	fmt.Println(coins)
+}
+
+func getCoinInfo() []Coin {
+	url := "http://coincap.io/front"
 }
