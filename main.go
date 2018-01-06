@@ -25,6 +25,16 @@ type Coin struct {
 }
 
 func main() {
+	coins := []Coin{}
+	coins = getCoinInfo(coins)
+	// fmt.Println(coins)
+
+	for i := 0; i < len(coins); i++ {
+		fmt.Println("\n", coins[i])
+	}
+}
+
+func getCoinInfo(coins []Coin) []Coin {
 	url := "http://coincap.io/front"
 
 	cl := http.Client{Timeout: time.Second * 2}
@@ -46,19 +56,10 @@ func main() {
 		fmt.Println("Read Error:", readErr)
 	}
 
-	coins := []Coin{}
 	jsonErr := json.Unmarshal(body, &coins)
 	if jsonErr != nil {
 		fmt.Println("JSON Error:", jsonErr)
 	}
 
-	for c := range coins {
-		fmt.Println(c.Long)
-	}
-
-	fmt.Println(coins)
-}
-
-func getCoinInfo() []Coin {
-	url := "http://coincap.io/front"
+	return coins
 }
